@@ -762,14 +762,12 @@ TrafficModel::~TrafficModel(void)
 	  }
 	  return;
   }
-  //---------------------------------------------------------------------------------------
-  // m_vKeyTraQuat m_MapTra_ptr 读取制作地图的轨迹和关键帧变换信息
-  //---------------------------------------------------------------------------------------
-int ReadVelocityFile(const string &FileName)
+
+BOOL  TrafficModel::ReadVelocityFile(const string &FileName)
 {
 	ifstream ifData;
 	char TraName[200] = "\0";
-	sprintf_s(TraName,"%sRst.txt",FileName.c_str());
+	sprintf_s(TraName,"%s",FileName.c_str());
 	ifData.open(TraName);
 	if (!ifData)
 	{
@@ -781,36 +779,16 @@ int ReadVelocityFile(const string &FileName)
 
 	VelocityModel temp;
 
+	while (!ifData.eof())
+	{
+		getline(ifData,tmpStr);
+		ss.clear();
+		ss.str(tmpStr);
+		ss>>temp.TargetSpeed>>temp.a>>temp.Speed>>temp.Reala;
 
+		cout<<temp.TargetSpeed<<"   "<<temp.a<<"   "<<temp.Speed<<"    "<<temp.Reala<<endl;
+		VelocityFile.push_back(temp);
+	}
+	ifData.close();
+	return TRUE;
 }
-  {
-
-	  std::stringstream ss;
-	  std::string tmpStr;
-
-	  sTraQuat tmpTraQuat;
-	  pcl::PointXYZ tmpTraData;
-	  pcl::PointCloud<pcl::PointXYZ> TraData;
-	  int nId = 0;
-	  while (!ifData.eof())
-	  {
-		  getline(ifData, tmpStr);
-		  if (tmpStr.empty())
-		  {
-			  continue;
-		  }
-		  ss.clear();
-		  ss.str(tmpStr);
-		  ss >> tmpTraQuat.Idx >> tmpTraQuat.tx >> tmpTraQuat.ty >> tmpTraQuat.tz
-			  >> tmpTraQuat.qx >> tmpTraQuat.qy >> tmpTraQuat.qz >> tmpTraQuat.qw;
-		  vTraAndQuat.push_back(tmpTraQuat);
-
-		  tmpTraData.x = tmpTraQuat.tx;
-		  tmpTraData.y = tmpTraQuat.ty;
-		  tmpTraData.z = tmpTraQuat.tz;
-		  TraData.push_back(tmpTraData);
-	  }
-	  MapTra_ptr->swap(TraData);
-	  ifData.close();
-	  return 0;
-  }

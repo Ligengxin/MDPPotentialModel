@@ -182,7 +182,7 @@ public:
 	BOOL OptPolicy(vector<vector< TreeNode >> &TreeMap,vector<TreeNode> &OptNode);//最优路径点搜索
 
 	void Fitting(vector<fPoint> Samples, double* a, int nParam);//曲线拟合
-	int ReadVelocityFile(const string &FileName);
+	BOOL ReadVelocityFile(const string &FileName);
 	
 };
 

@@ -62,6 +62,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//model.DynamicLaneRightCost(node,model,LaneMark);
 	lane_cost=model.LaneMarkCost(node,LaneMark,model);
 	int num=LaneInfo.LineR2.ValidNum;
+	model.ReadVelocityFile("D:\\MDPPotentialModel\\PotentialModel\\indata\\VelocityFile1.txt");
 	for (int i=0;i<num;i++)
 	{
 		//cout<<LaneInfo.LineR2.LinePt[i].x<<"  "<<LaneInfo.LineR2.LinePt[i].y<<endl;
