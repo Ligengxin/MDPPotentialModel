@@ -694,6 +694,11 @@ TrafficModel::~TrafficModel(void)
 
   float TrafficModel::GetStepDis(vector<float> &velocity,int LayerIndex)
   {
+
+
+
+
+
 	  return 0;
   }
   BOOL TrafficModel::GetTreeMap(vector<vector< TreeNode >> &TreeMap)
@@ -772,7 +777,7 @@ BOOL  TrafficModel::ReadVelocityFile(const string &FileName)
 		cout<<"Cannot open the file!"<<endl;
 		exit(-1);
 	}
-	//stringstream ss;
+	stringstream ss;
 	string tmpStr;
 
 	VelocityModel temp;
@@ -783,45 +788,9 @@ BOOL  TrafficModel::ReadVelocityFile(const string &FileName)
 		ss.clear();
 		ss.str(tmpStr);
 		ss>>temp.TargetSpeed>>temp.a>>temp.Speed>>temp.Reala;
-
-<<<<<<< HEAD
 		cout<<temp.TargetSpeed<<"   "<<temp.a<<"   "<<temp.Speed<<"    "<<temp.Reala<<endl;
 		VelocityFile.push_back(temp);
 	}
 	ifData.close();
 	return TRUE;
 }
-=======
-}
-  //{
-
-	 // std::stringstream ss;
-	 // std::string tmpStr;
-
-	 // sTraQuat tmpTraQuat;
-	 // pcl::PointXYZ tmpTraData;
-	 // pcl::PointCloud<pcl::PointXYZ> TraData;
-	 // int nId = 0;
-	 // while (!ifData.eof())
-	 // {
-		//  getline(ifData, tmpStr);
-		//  if (tmpStr.empty())
-		//  {
-		//	  continue;
-		//  }
-		//  ss.clear();
-		//  ss.str(tmpStr);
-		//  ss >> tmpTraQuat.Idx >> tmpTraQuat.tx >> tmpTraQuat.ty >> tmpTraQuat.tz
-		//	  >> tmpTraQuat.qx >> tmpTraQuat.qy >> tmpTraQuat.qz >> tmpTraQuat.qw;
-		//  vTraAndQuat.push_back(tmpTraQuat);
-
-		//  tmpTraData.x = tmpTraQuat.tx;
-		//  tmpTraData.y = tmpTraQuat.ty;
-		//  tmpTraData.z = tmpTraQuat.tz;
-		//  TraData.push_back(tmpTraData);
-	 // }
-	 // MapTra_ptr->swap(TraData);
-	 // ifData.close();
-	 // return 0;
-  //}
->>>>>>> 738b9b3923732a5fc27f6806b9fc11c4a290ac6b
