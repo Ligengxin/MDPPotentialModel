@@ -642,12 +642,18 @@ TrafficModel::~TrafficModel(void)
 	  float t_auto=0.7;
 	  float t_hum=1.7;
 	  float Hum_cost=0;
-	  float del_theta,dis,p,p_max,v,vp,c;
-	  int Hum_Num=humanNum;
+	  float del_theta=0,dis=0,p=0,p_max=0,v=0,vp=0,c=0;
 
-	  for(int i=0;i<Hum_Num;i++)
+	  for(int i=0;i<humanNum;i++)  //humanNum为行人个数
 	  {
-		  del_theta=atan((node.d-ObsHuman[i].d)/(node.s-ObsHuman[i].s))-ObsHuman[i].theta;
+		  if((node.s==ObsHuman[i].s)&&(node.d>ObsHuman[i].d))del_theta=pi/2-ObsHuman[i].theta;  //假定theta为弧度制 
+		  else
+		  {
+			  if((node.s==ObsHuman[i].s)&&(node.d<ObsHuman[i].d))del_theta=-pi/2-ObsHuman[i].theta;
+			  else
+				  del_theta=atan((node.d-ObsHuman[i].d)/(node.s-ObsHuman[i].s))-ObsHuman[i].theta;
+		  }
+	  
 		  dis=sqrt(pow((node.s-ObsHuman[i].s),2)+pow((node.d-ObsHuman[i].d),2));
 		  v=ObsHuman[i].v;
 		  p_max = (v/3+0.5)/pi;
@@ -655,7 +661,8 @@ TrafficModel::~TrafficModel(void)
 		  
 
 		  if(v<1.5)v=1.5;
-		  vp=v*pow((p/p_max),2)/2;
+		  //vp=v*pow((p/p_max),2)/2;  //vp表示行人转向(s,d)所处方向运动的概率速度
+		  vp=v*p/p_max; 
 
 		  if(dis<=t_auto*vp) c=100;
 		  else

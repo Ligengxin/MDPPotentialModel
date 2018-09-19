@@ -54,24 +54,29 @@ int _tmain(int argc, _TCHAR* argv[])
 	model.veh.theta=0;
 	model.veh.v=7;
 
-	model.StaticObs[0].s=90;
-	model.StaticObs[0].d=5.625;
-	model.StaticObs[0].r=2.5;
+	model.StaticObs[0].s=75;
+	model.StaticObs[0].d=4;
+	model.StaticObs[0].r=0.3;
 	model.staticObsNum=3;
 
-	model.StaticObs[1].s=110;
-	model.StaticObs[1].d=9.375;
-	model.StaticObs[1].r=2.5;
+	model.StaticObs[1].s=77;
+	model.StaticObs[1].d=5;
+	model.StaticObs[1].r=0.3;
 
-	model.StaticObs[2].s=70;
-	model.StaticObs[2].d=9.375;
-	model.StaticObs[2].r=2.5;
+	model.StaticObs[2].s=79;
+	model.StaticObs[2].d=6;
+	model.StaticObs[2].r=0.3;
+
+	model.ObsHuman[0].s=50;
+	model.ObsHuman[0].d=4;
+	model.ObsHuman[0].v=2;
+	model.humanNum=1;
 
 
 
 	TreeNode node;
-	node.s=70;
-	node.d=1.5*3.75;
+	node.s=54;
+	node.d=4.1;
 
 	//float lane_cost=0;
 	//float dynamic_cost=0;

@@ -1,40 +1,21 @@
-﻿生成启动时间为 2018/9/19 11:26:14。
+﻿生成启动时间为 2018/9/19 21:21:33。
      1>项目“E:\MDPPotentialModel\PotentialModel\PotentialModel\PotentialModel.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\PotentialModel.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
          所有输出均为最新。
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PotentialModel.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt PotentialModel.cpp TrafficModel.cpp
-         TrafficModel.cpp
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(123): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(124): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(342): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(379): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(404): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(419): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(437): warning C4305: “初始化”: 从“double”到“float”截断
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(438): warning C4305: “初始化”: 从“double”到“float”截断
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(440): warning C4305: “初始化”: 从“double”到“float”截断
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(441): warning C4305: “初始化”: 从“double”到“float”截断
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(445): warning C4305: “=”: 从“double”到“float”截断
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(522): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(537): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(542): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(583): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(588): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(595): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(642): warning C4305: “初始化”: 从“double”到“float”截断
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(643): warning C4305: “初始化”: 从“double”到“float”截断
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(653): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(681): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(685): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(690): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(692): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-         PotentialModel.cpp
-     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\potentialmodel.cpp(92): error C2065: “static_cost”: 未声明的标识符
-         正在生成代码...
-     1>已完成生成项目“E:\MDPPotentialModel\PotentialModel\PotentialModel\PotentialModel.vcxproj”(build 个目标)的操作 - 失败。
+         所有输出均为最新。
+       ManifestResourceCompile:
+         所有输出均为最新。
+       Link:
+         所有输出均为最新。
+       Manifest:
+         所有输出均为最新。
+       FinalizeBuildStatus:
+         正在删除文件“Debug\PotentialModel.unsuccessfulbuild”。
+         正在对“Debug\PotentialModel.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\MDPPotentialModel\PotentialModel\PotentialModel\PotentialModel.vcxproj”(build 个目标)的操作。
 
-生成失败。
+生成成功。
 
-已用时间 00:00:00.37
+已用时间 00:00:00.04
