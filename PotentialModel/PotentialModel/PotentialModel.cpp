@@ -57,20 +57,28 @@ int _tmain(int argc, _TCHAR* argv[])
 	model.StaticObs[0].s=90;
 	model.StaticObs[0].d=5.625;
 	model.StaticObs[0].r=2.5;
-	model.staticObsNum=2;
+	model.staticObsNum=3;
 
 	model.StaticObs[1].s=110;
 	model.StaticObs[1].d=9.375;
 	model.StaticObs[1].r=2.5;
 
+	model.StaticObs[2].s=70;
+	model.StaticObs[2].d=9.375;
+	model.StaticObs[2].r=2.5;
+
+
+
 	TreeNode node;
-	node.s=95;
+	node.s=70;
 	node.d=1.5*3.75;
 
 	//float lane_cost=0;
 	//float dynamic_cost=0;
-	float static_cost=0;
-	static_cost=model.StaticLaneRightCost(node,LaneMark);
+	//float static_cost=0;
+	float hum_cost=0;
+	hum_cost=model.HumanCost(node);
+	//static_cost=model.StaticLaneRightCost(node,LaneMark);
 	//dynamic_cost=model.DynamicLaneRightCost(node,LaneMark);
 	//lane_cost=model.LaneMarkCost(node,LaneMark);  
 	int num=LaneInfo.LineR2.ValidNum;
@@ -83,7 +91,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//	
 	//}
 
-	cout<<static_cost<<endl;
+	cout<<hum_cost<<endl;
 	system("pause");
 
 	return 0;

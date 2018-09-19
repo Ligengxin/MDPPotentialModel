@@ -596,7 +596,7 @@ TrafficModel::~TrafficModel(void)
 	  if(node.d==0)point_Laneidx=1;
 	  float p=0,Static_cost=0;
 
-	  if((node.s>S_flag[point_Laneidx-1][0])&&(node.s<S_flag[point_Laneidx-1][1])) Static_cost=100;
+	  if((node.s>=S_flag[point_Laneidx-1][0])&&(node.s<=S_flag[point_Laneidx-1][1])) Static_cost=100;
 	  else
 	  {
 	      if((node.s>Smin)&&(node.s<Smax))
@@ -615,22 +615,23 @@ TrafficModel::~TrafficModel(void)
   float TrafficModel::StaticOccupancy(TreeNode &node,FrenetStaticObs  StaticObs[],int staticObsNum)
   {
       float w_auto=2;
-	  float l_auto=5;  //3.8
+	  float l_auto=4;  //3.8
 	  float MinDis=10;
 	  float dis=0,p=0,q=-1;
+	  int idx;  //距离点最近的静态障碍物索引
 
 	  for(int i=0;i<staticObsNum;i++)
 	  {
 		  dis=sqrt(pow((node.s-StaticObs[i].s),2)+pow((node.d-StaticObs[i].d),2));
-		  if(dis<=MinDis)MinDis=dis;
+		  if(dis<=MinDis)MinDis=dis,idx=i;
 
 	  }
 
-	  if(MinDis<w_auto/2)p=1;
+	  if(MinDis<(w_auto/2+StaticObs[idx].r))p=1;
 	  else
-		  if(MinDis>l_auto)p=0;
+		  if(MinDis>(l_auto+StaticObs[idx].r))p=0;
 		  else
-			  p=SigFunc((MinDis-w_auto/2),q,l_auto);
+			  p=SigFunc((MinDis-w_auto/2),q,(l_auto+StaticObs[idx].r));
 
       return p;
   }
