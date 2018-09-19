@@ -338,7 +338,7 @@ TrafficModel::~TrafficModel(void)
   {
 	  float left_d=0,right_d=0,left_A=0,right_A=0;
 	  int idx=0,point_Laneidx=0;
-	  int samples=100;  //车道线采样点个数一定，为100，但点与点之间的间距不确定
+	  int samples=600;  //测试时为600，比赛时车道线采样点个数一定，为100，但点与点之间的间距不确定
 	  point_Laneidx=ceil(node.d/LaneMark.LaneWidth);
 	  if(node.d==0)point_Laneidx=1;
 
@@ -506,7 +506,7 @@ TrafficModel::~TrafficModel(void)
 
   float TrafficModel::StaticLaneRightCost(TreeNode &node,FrenetLaneMark &LaneMark)
   {
-	  int LaneNum,Staticobs_idx;  //Staticobs_idx为障碍车辆所在车道号
+	  int LaneNum=0,Staticobs_idx=0;  //LaneNum为车道数目，Staticobs_idx为障碍车辆所在车道号
 
 	  if(LaneMark.FrenetLineR2.LaneLineNo==1)LaneNum=3;
 	  else LaneNum=2;
@@ -517,12 +517,10 @@ TrafficModel::~TrafficModel(void)
 	  vector<FrenetStaticObs>Staticobs3;
 	  vector<FrenetStaticObs>LaneObs;
 
-	  int staticObsNum=staticObsNum;  //静态语义障碍物的数目
-
-	  for(int i=0;i<staticObsNum;i++)   
+	  for(int i=0;i<staticObsNum;i++)   //staticObsNum为静态语义障碍物的数目
 	  {
 		  Staticobs_idx=ceil(StaticObs[i].d/LaneMark.LaneWidth);  //障碍车辆所在车道号
-		  index[Staticobs_idx]=index[Staticobs_idx]+1;  //各车道障碍车辆数目
+		  index[Staticobs_idx-1]=index[Staticobs_idx-1]+1;  //各车道障碍车辆数目
 		  if(Staticobs_idx==1)Staticobs1.push_back(StaticObs[i]);
 		  if(Staticobs_idx==2)Staticobs2.push_back(StaticObs[i]);
 		  if((Staticobs_idx==3)&&(LaneNum==3))Staticobs3.push_back(StaticObs[i]);
@@ -533,56 +531,72 @@ TrafficModel::~TrafficModel(void)
 	  int lmin=0,lmax=0;    //所有障碍物所在范围的起点和终点所对应的索引值
 	  for(int i=0;i<staticObsNum;i++)
 	  {
-		  if(Smin>StaticObs[i].s)Smin=StaticObs[i].s,lmin=i;
-		  if(Smax<StaticObs[i].s)Smax=StaticObs[i].s,lmax=i;
+		  if((Smin==0)&&(Smax==0))
+		  {
+			  Smin=StaticObs[i].s-StaticObs[i].r-veh.l_f;
+			  Smax=StaticObs[i].s+StaticObs[i].r+StaticObs[i].sem_len+veh.l_r+0.5;
+		  }
+		  else
+		  {
+			  if(Smin>(StaticObs[i].s-StaticObs[i].r-veh.l_f))Smin=StaticObs[i].s-StaticObs[i].r-veh.l_f,lmin=i;
+			  if(Smax<(StaticObs[i].s+StaticObs[i].r+veh.l_r+0.5))Smax=StaticObs[i].s+StaticObs[i].r+StaticObs[i].sem_len+veh.l_r+0.5,lmax=i;
+		  }
+
 	  }
-	  Smin=Smin-StaticObs[lmin].r-veh.l_f;
-	  Smax=Smax+StaticObs[lmin].r+veh.l_r+0.5;
 
-
-	  vector< vector<float> >S_flag;   //存储每条车道线上障碍物范围的起点和终点
-	  vector<float>a(LaneNum);
-	  vector<float>b(2);
-	  S_flag.push_back(a);
-	  S_flag.push_back(b);
-
-	  for(int i=1;i<=LaneNum;i++)
+	  vector< vector<float> >S_flag(LaneNum);   //存储每条车道线上障碍物范围的起点和终点
+	  for(int i=0;i<LaneNum;i++)
 	  {
-		  if((i==1)&&(Staticobs1.size()>0))LaneObs=Staticobs1;
-		  if((i==2)&&(Staticobs2.size()>0))LaneObs=Staticobs2;
-		  if((i==3)&&(Staticobs3.size()>0))LaneObs=Staticobs3;
+		  S_flag[i].push_back(0);  //障碍物范围起点,S_flag[i][0]
+		  S_flag[i].push_back(0);  //障碍物范围终点,S_flag[i][1]
+	  }
+
+	  for(int i=0;i<LaneNum;i++)
+	  {
+		  memset(&LaneObs,0,sizeof(LaneObs));
+		  if((i==0)&&(index[0]>0))LaneObs=Staticobs1;
+		  if((i==1)&&(index[1]>0))LaneObs=Staticobs2;
+		  if((i==2)&&(index[2]>0))LaneObs=Staticobs3;
 		  if(LaneObs.size()==0)continue;
 		  
-		  S_flag[i][1]=0;  //障碍物范围起点
-		  S_flag[i][2]=0;  //障碍物范围终点
 		  int LaneObs_Num=LaneObs.size();
 
 		  for(int j=0;j<LaneObs_Num;j++)
 		  {
-			  if((LaneObs[j].sem_len>0)&&((LaneObs[j].s+LaneObs[j].sem_len)>0))
+			  /*if((LaneObs[j].sem_len>=0)&&((LaneObs[j].s+LaneObs[j].sem_len)>0))
 			  {
-			      if((S_flag[i][1]==0)&&(S_flag[i][2]==0))
+			      if((S_flag[i][0]==0)&&(S_flag[i][1]==0))
 				  {
-				      S_flag[i][1]=LaneObs[j].s;
-					  S_flag[i][2]=LaneObs[j].s+LaneObs[j].sem_len;
+				      S_flag[i][0]=LaneObs[j].s;
+					  S_flag[i][1]=LaneObs[j].s+LaneObs[j].sem_len;
 				  }
 				  else
 				  {
-				      if(S_flag[i][1]>LaneObs[j].s)S_flag[i][1]=LaneObs[j].s;
-				      if(S_flag[i][2]<LaneObs[j].s+LaneObs[j].sem_len)S_flag[i][2]=LaneObs[j].s+LaneObs[j].sem_len;
+				      if(S_flag[i][0]>LaneObs[j].s)S_flag[i][0]=LaneObs[j].s;
+				      if(S_flag[i][1]<LaneObs[j].s+LaneObs[j].sem_len)S_flag[i][1]=LaneObs[j].s+LaneObs[j].sem_len;
 				  }
 			  
+			  }*/
+			  if((S_flag[i][0]==0)&&(S_flag[i][1]==0))
+			  {
+				  S_flag[i][0]=LaneObs[j].s-LaneObs[j].r-veh.l_f;
+				  S_flag[i][1]=LaneObs[j].s+LaneObs[j].sem_len+LaneObs[j].r+veh.l_r+0.5;
 			  }
-		  
+			  else
+			  {
+				  if (S_flag[i][0]>(LaneObs[j].s-LaneObs[j].r))S_flag[i][0]=LaneObs[j].s-LaneObs[j].r-veh.l_f;
+				  if (S_flag[i][1]<(LaneObs[j].s+LaneObs[j].r+LaneObs[j].sem_len))S_flag[i][1]=LaneObs[j].s+LaneObs[j].r+LaneObs[j].sem_len+veh.l_r+0.5; 
+			  }
+			 
 		  }
 
 	  }
 
 	  int point_Laneidx=ceil(node.d/LaneMark.LaneWidth);  //点所在车道号
 	  if(node.d==0)point_Laneidx=1;
-	  float p,Static_cost;
+	  float p=0,Static_cost=0;
 
-	  if((node.s>S_flag[point_Laneidx][1])&&(node.s<S_flag[point_Laneidx][2])) Static_cost=100;
+	  if((node.s>S_flag[point_Laneidx-1][0])&&(node.s<S_flag[point_Laneidx-1][1])) Static_cost=100;
 	  else
 	  {
 	      if((node.s>Smin)&&(node.s<Smax))
@@ -601,9 +615,9 @@ TrafficModel::~TrafficModel(void)
   float TrafficModel::StaticOccupancy(TreeNode &node,FrenetStaticObs  StaticObs[],int staticObsNum)
   {
       float w_auto=2;
-	  float l_auto=3.8;
+	  float l_auto=5;  //3.8
 	  float MinDis=10;
-	  float dis,p,q=-1;
+	  float dis=0,p=0,q=-1;
 
 	  for(int i=0;i<staticObsNum;i++)
 	  {
