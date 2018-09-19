@@ -692,18 +692,46 @@ TrafficModel::~TrafficModel(void)
   }
 
 
-  float TrafficModel::GetStepDis(vector<float> &velocity,int LayerIndex)
+  float TrafficModel::GetStepDis(int LayerIndex)
   {
+	  //输入为所建三叉树的层索引，输出为该层所对应步长，速度文件为间隔0.1秒的车辆速度递推序列
+	  //将整个速度序列文件按照层数划分并向上取整
+	  int   size=VelocityFile.size();//速度文件中序列点数据个数
+	  int num=(int)size/LayerNum;//每一层所需要执行速度文件的个数
+	
+	  int v_ini=LayerIndex*num;//该层执行速度文件其实索引
+	  int v_end=(LayerIndex+1)*num;//该层速度文件结束索引
 
+	  float StepDis=0;//运动距离
 
-
-
-
-	  return 0;
+	  for (int i=v_ini;i<v_end;i++)
+	  {
+		  StepDis=StepDis+(VelocityFile[i].Speed+VelocityFile[i+1].Speed)*0.05;
+	  }
+	  return StepDis;
   }
-  BOOL TrafficModel::GetTreeMap(vector<vector< TreeNode >> &TreeMap)
+  void TrafficModel::GetTreeMap(void)
   {
-	  return TRUE;
+
+	  float step=0.25;//该节点代价值为当前节点方向向前到下一节点连线上的代价最大值，该值为搜索步长
+	  
+	  
+
+	  float stepDis=GetStepDis(0);//当前节点到下一节点的距离
+	  TreeNode Node;//单个节点临时变量
+	  vector<TreeNode> temp;//每一层节点临时变量
+	  //设置根节点
+	  Node.s=veh.s;
+	  Node.d=veh.d;
+	  Node.theta=veh.theta;
+	  Node.cost=
+
+
+
+
+
+
+	  return;
   }
   BOOL TrafficModel::BellmanIteration(vector<vector< TreeNode >> &TreeMap)
   {

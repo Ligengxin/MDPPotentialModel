@@ -176,8 +176,9 @@ public:
 	float StaticLaneRightCost(TreeNode &node,FrenetLaneMark &LaneMark);//静态车道占据势场
 	float HumanCost(TreeNode &node);//行人占据势场
 
-	float GetStepDis(vector<float> &velocity,int LayerIndex);//获取某一层的步长
-	BOOL GetTreeMap(vector<vector< TreeNode >> &TreeMap);//构建状态树
+	float GetStepDis(int LayerIndex);//获取某一层的步长
+	void GetTreeMap(void);//构建状态树
+	float GetNodeCost(float StepDistance);//获取某节点处的代价
 	BOOL BellmanIteration(vector<vector< TreeNode >> &TreeMap);//贝尔曼值迭代
 	BOOL OptPolicy(vector<vector< TreeNode >> &TreeMap,vector<TreeNode> &OptNode);//最优路径点搜索
 
