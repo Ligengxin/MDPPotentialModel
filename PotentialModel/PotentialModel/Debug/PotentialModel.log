@@ -1,11 +1,37 @@
-﻿生成启动时间为 2018/9/18 21:27:33。
+﻿生成启动时间为 2018/9/19 9:20:39。
      1>项目“E:\MDPPotentialModel\PotentialModel\PotentialModel\PotentialModel.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\PotentialModel.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
          所有输出均为最新。
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PotentialModel.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt PotentialModel.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\PotentialModel.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt PotentialModel.cpp TrafficModel.cpp
+         TrafficModel.cpp
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(123): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(124): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(342): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(379): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(404): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(419): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(437): warning C4305: “初始化”: 从“double”到“float”截断
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(438): warning C4305: “初始化”: 从“double”到“float”截断
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(440): warning C4305: “初始化”: 从“double”到“float”截断
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(441): warning C4305: “初始化”: 从“double”到“float”截断
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(445): warning C4305: “=”: 从“double”到“float”截断
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(522): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(537): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(542): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(583): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(588): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(595): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(641): warning C4305: “初始化”: 从“double”到“float”截断
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(642): warning C4305: “初始化”: 从“double”到“float”截断
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(652): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(680): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(684): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(689): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\mdppotentialmodel\potentialmodel\potentialmodel\trafficmodel.cpp(691): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
          PotentialModel.cpp
+         正在生成代码...
        ManifestResourceCompile:
          所有输出均为最新。
        Link:
@@ -28,4 +54,4 @@
 
 生成成功。
 
-已用时间 00:00:00.48
+已用时间 00:00:01.33
